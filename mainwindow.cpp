@@ -25,12 +25,12 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
 
     connect(_clicker, &Clicker::modeChanged, this, [this](Clicker::ActivationMode mode) {
         ui->comboBoxActivationMode->setCurrentIndex(static_cast<int>(mode));
-        if (_isLoadingConfig) _configManager.write(*_clicker);
+        if (_isConfigLoaded) _configManager.write(*_clicker);
     });
 
     connect(_clicker, &Clicker::bindChanged, this, [this](InputBinding bind) {
         ui->pushButtonActivationKey->setText(bind.toString());
-        if (_isLoadingConfig) _configManager.write(*_clicker);
+        if (_isConfigLoaded) _configManager.write(*_clicker);
     });
 
     connect(_clicker, &Clicker::mouseButtonChanged, this, [this](Qt::MouseButton mouseButton) {
@@ -44,12 +44,12 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
         }
 
         ui->comboBoxMouseButton->setCurrentIndex(index);
-        if (_isLoadingConfig) _configManager.write(*_clicker);
+        if (_isConfigLoaded) _configManager.write(*_clicker);
     });
 
     connect(_clicker, &Clicker::clicksPerSecondChanged, this, [this](unsigned clicks) {
         ui->spinBoxClicksPerSecond->setValue(clicks);
-        if (_isLoadingConfig) _configManager.write(*_clicker);
+        if (_isConfigLoaded) _configManager.write(*_clicker);
     });
 
     connect(_clicker, &Clicker::stateChanged, this, [this](Clicker::ClickerState state) {
@@ -67,16 +67,16 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
 
     connect(_clicker, &Clicker::autoRunChanged, this, [this](bool arg1) {
         ui->checkBoxAutostartWithWindows->setCheckState(arg1 ? Qt::CheckState::Checked : Qt::CheckState::Unchecked);
-        if (_isLoadingConfig) _configManager.write(*_clicker);
+        if (_isConfigLoaded) _configManager.write(*_clicker);
     });
 
     connect(_clicker, &Clicker::runInTrayChanged, this, [this](bool arg1) {
         ui->checkBoxRunInSystemTray->setCheckState(arg1 ? Qt::CheckState::Checked : Qt::CheckState::Unchecked);
-        if (_isLoadingConfig) _configManager.write(*_clicker);
+        if (_isConfigLoaded) _configManager.write(*_clicker);
     });
 
     _clicker->loadConfig(_configManager);
-    _isLoadingConfig = true;
+    _isConfigLoaded = true;
 }
 
 MainWindow::~MainWindow() { delete ui; }
