@@ -23,6 +23,8 @@ private:
     TrayManager* _trayManager = nullptr;
 
     ConfigManager _configManager = ConfigManager();
+    bool _isLoadingConfig = false;
+
     Clicker* _clicker = nullptr;
     unsigned _lastValidMouseButtonIndex = 0;
 
