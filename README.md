@@ -2,6 +2,8 @@
 
 Простой автокликер для Windows, написанный на C++ и Qt.
 
+<img width="601" height="475" alt="изображение" src="https://github.com/user-attachments/assets/dfec1221-561f-45b8-bc1c-3012309855dd" />
+
 ## Возможности
 
 * До 500 кликов в секунду
