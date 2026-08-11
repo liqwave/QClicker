@@ -1,10 +1,11 @@
 #ifndef TRAYMANAGER_H
 #define TRAYMANAGER_H
 
+#include <QMenu>
 #include <QObject>
 #include <QSystemTrayIcon>
-#include <QMenu>
-#include <QMainWindow>
+
+class QMainWindow;
 
 class TrayManager : public QObject {
     Q_OBJECT

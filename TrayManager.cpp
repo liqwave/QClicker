@@ -1,6 +1,8 @@
 #include "traymanager.h"
+
 #include <QApplication>
 #include <QAction>
+#include <QMainWindow>
 
 TrayManager::TrayManager(QMainWindow *window, QObject *parent)
     : QObject(parent), _mainWindow(window) {
@@ -32,7 +34,7 @@ TrayManager::TrayManager(QMainWindow *window, QObject *parent)
     });
 }
 
-TrayManager::~TrayManager() {  delete _trayMenu; }
+TrayManager::~TrayManager() { delete _trayMenu; }
 
 void TrayManager::showMessage(const QString &title, const QString &message) {
     if (_trayIcon) {

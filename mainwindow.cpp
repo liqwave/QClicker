@@ -2,6 +2,8 @@
 #include "ui_mainwindow.h"
 #include "KeyBindDialog.h"
 #include "StyleManager.h"
+#include "Clicker.h"
+#include "TrayManager.h"
 
 #include <QSettings>
 #include <QCoreApplication>

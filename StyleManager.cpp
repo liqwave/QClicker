@@ -1,5 +1,9 @@
 #include "StyleManager.h"
 
+#include "Clicker.h"
+
+#include <QLabel>
+
 void StyleManager::setStyleState(QLabel *labelState, Clicker::ClickerState state) {
     switch (state) {
     case Clicker::ClickerState::BindingKey:

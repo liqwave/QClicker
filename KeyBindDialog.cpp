@@ -1,5 +1,6 @@
 #include "KeyBindDialog.h"
 #include "ui_KeyBindDialog.h"
+
 #include <QTimer>
 
 void KeyBindDialog::keyPressEvent(QKeyEvent *event) {

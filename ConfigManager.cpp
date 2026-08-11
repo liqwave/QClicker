@@ -4,7 +4,7 @@
 #include <QFile>
 #include <QJsonDocument>
 #include <QJsonObject>
-
+#include <QString>
 
 QJsonObject ConfigManager::_bindToJson(const InputBinding& binding) {
     QJsonObject bindObj;

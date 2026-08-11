@@ -1,11 +1,12 @@
 #ifndef KEYBINDDIALOG_H
 #define KEYBINDDIALOG_H
 
+#include "InputBinding.h"
+
 #include <QDialog>
 #include <QKeyEvent>
 #include <QMouseEvent>
 #include <QPixmap>
-#include "InputBinding.h"
 
 namespace Ui { class KeyBindDialog; }
 

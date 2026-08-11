@@ -3,10 +3,10 @@
 
 #include "InputBinding.h"
 #include "ClickerEnums.h"
-#include <QString>
 
 class Clicker;
 class QJsonObject;
+class QString;
 
 class ConfigManager {
 private:

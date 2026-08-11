@@ -6,9 +6,10 @@
 #include <QSystemTrayIcon>
 #include <QMenu>
 
-#include "Clicker.h"
-#include "TrayManager.h"
 #include "ConfigManager.h"
+
+class Clicker;
+class TrayManager;
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -41,7 +42,6 @@ private slots:
     void on_comboBoxActivationMode_currentIndexChanged(int index);
     void on_pushButtonActivationKey_clicked();
     void on_comboBoxMouseButton_currentIndexChanged(int index);
-
     void on_spinBoxClicksPerSecond_valueChanged(int arg1);
     void on_spinBoxClicksPerSecond_editingFinished();
     void on_pushButtonResetSettings_clicked();
