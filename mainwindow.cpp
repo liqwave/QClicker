@@ -5,10 +5,11 @@
 #include "Clicker.h"
 #include "TrayManager.h"
 
-#include <QSettings>
 #include <QCoreApplication>
 #include <QDir>
 #include <QMessageBox>
+#include <QSettings>
+#include <QTimer>
 
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWindow) {
     ui->setupUi(this);
@@ -33,6 +34,8 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     connect(_clicker, &Clicker::bindChanged, this, [this](InputBinding bind) {
         ui->pushButtonActivationKey->setText(bind.toString());
         if (_isConfigLoaded) _configManager.write(*_clicker);
+        if (_clicker->getBind().isValid())
+            QTimer::singleShot(0, this, [this]() { _clicker->startHook(); });
     });
 
     connect(_clicker, &Clicker::mouseButtonChanged, this, [this](Qt::MouseButton mouseButton) {
@@ -115,9 +118,6 @@ void MainWindow::on_pushButtonActivationKey_clicked() {
     if (dialog.isSelected()) {
         _clicker->setBind(dialog.getBind());
         ui->pushButtonActivationKey->setText(dialog.getBind().toString());
-
-        // хук вызывается из двух мест, по-хорошему это потом надо переписать
-        _clicker->startHook();
     }
 }
 

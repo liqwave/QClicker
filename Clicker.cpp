@@ -38,15 +38,10 @@ void Clicker::loadConfig(const ConfigManager& config) {
     setClicksPerSecond(config.getClicksPerSecond());
     setAutoRun(config.getAutoRun());
     setRunInTray(config.getRunInTray());
-
-    // хук вызывается из двух мест, по-хорошему это потом надо переписать
-    startHook();
 }
 
 void Clicker::startHook() {
     if (_hook.isStarted()) return;
-
-    qDebug() << "startHook()";
 
     _hook.setCallback(
         [this](InputBinding binding, GlobalHook::EventType event) {
