@@ -44,11 +44,17 @@ private slots:
     void on_comboBoxMouseButton_currentIndexChanged(int index);
     void on_spinBoxClicksPerSecond_valueChanged(int arg1);
     void on_spinBoxClicksPerSecond_editingFinished();
+    void on_doubleSpinBoxClickDutyCycle_valueChanged(double arg1);
+
     void on_pushButtonResetSettings_clicked();
     void on_pushButtonExit_clicked();
     void on_pushButtonOk_clicked();
     void on_checkBoxAutostartWithWindows_checkStateChanged(const Qt::CheckState& arg1);
     void on_checkBoxRunInSystemTray_checkStateChanged(const Qt::CheckState& arg1);
+
+
+
+    void on_doubleSpinBoxClickDutyCycle_editingFinished();
 
 signals:
     void iconChanged(const QIcon& icon);

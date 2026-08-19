@@ -37,6 +37,7 @@ private:
     InputBinding _bind;
     Qt::MouseButton _mouseButton = Qt::MouseButton::LeftButton;
     std::atomic<unsigned> _clicksPerSecond = 0;
+    std::atomic<double> _clickDutyCycle = 0.0;
 
     std::atomic<ClickerState> _state = ClickerState::BindingKey;
     std::atomic<Warning> _warning = Warning::ZeroCps;
@@ -66,6 +67,7 @@ public:
     InputBinding getBind() const { return _bind; }
     Qt::MouseButton getMouseButton() const { return _mouseButton; }
     unsigned getClicksPerSecond() const { return _clicksPerSecond.load(); }
+    double getClickDutyCycle() const { return _clickDutyCycle.load(); }
     ClickerState getState() const { return _state; }
     Warning getWarning() const { return _warning; }
     bool getAutoRun() const { return _autoRun; }
@@ -80,6 +82,7 @@ public:
     }
     void setMouseButton(Qt::MouseButton mouseButton) { _mouseButton = mouseButton; emit mouseButtonChanged(mouseButton); }
     void setClicksPerSecond(unsigned clicks) { _clicksPerSecond = clicks; emit clicksPerSecondChanged(clicks); }
+    void setClickDutyCycle(double value) { _clickDutyCycle = value; emit clickDutyCycleChanged(value); }
     void setState(ClickerState state) { _state = state; emit stateChanged(state); }
     void setWarning(Warning warning) { _warning = warning; emit warningChanged(warning); }
     void setAutoRun(bool value) { _autoRun = value; emit autoRunChanged(value); }
@@ -90,6 +93,7 @@ signals:
     void bindChanged(InputBinding bind);
     void mouseButtonChanged(Qt::MouseButton mouseButton);
     void clicksPerSecondChanged(unsigned clicks);
+    void clickDutyCycleChanged(double value);
     void stateChanged(ClickerState state);
     void warningChanged(Warning warning);
     void autoRunChanged(bool value);

@@ -57,6 +57,11 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
         if (_isConfigLoaded) _configManager.write(*_clicker);
     });
 
+    connect(_clicker, &Clicker::clickDutyCycleChanged, this, [this](double value) {
+        ui->doubleSpinBoxClickDutyCycle->setValue(value);
+        if (_isConfigLoaded) _configManager.write(*_clicker);
+    });
+
     connect(_clicker, &Clicker::stateChanged, this, [this](Clicker::ClickerState state) {
         StyleManager::setStyleState(ui->labelClickerStateValue, state);
         switch(state) {
@@ -152,7 +157,14 @@ void MainWindow::on_spinBoxClicksPerSecond_valueChanged(int arg1) {
     else
         _clicker->setWarning(Clicker::Warning::ZeroCps);
 }
+
 void MainWindow::on_spinBoxClicksPerSecond_editingFinished() { ui->spinBoxClicksPerSecond->clearFocus(); }
+
+void MainWindow::on_doubleSpinBoxClickDutyCycle_valueChanged(double arg1) {
+    _clicker->setClickDutyCycle(arg1);
+}
+
+void MainWindow::on_doubleSpinBoxClickDutyCycle_editingFinished() { ui->doubleSpinBoxClickDutyCycle->clearFocus(); }
 
 void MainWindow::on_pushButtonResetSettings_clicked() {
     _clicker->setMode(Clicker::ActivationMode::Hold);
@@ -200,3 +212,5 @@ void MainWindow::_setAppIcon(const QIcon &icon) {
     setWindowIcon(icon);                  // Меняем у главного окна
     emit iconChanged(icon);    // Рассылаем сигнал всем заинтересованным
 }
+
+

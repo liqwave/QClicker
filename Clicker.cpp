@@ -36,6 +36,7 @@ void Clicker::loadConfig(const ConfigManager& config) {
     setBind(config.getBind());
     setMouseButton(config.getMouseButton());
     setClicksPerSecond(config.getClicksPerSecond());
+    setClickDutyCycle(config.getClickDutyCycle());
     setAutoRun(config.getAutoRun());
     setRunInTray(config.getRunInTray());
 }
@@ -104,7 +105,7 @@ void Clicker::_performSingleClick() {
     double intervalMs = 1000.0 / cps;
 
     // click duty cycle
-    double pressDurationMs = intervalMs * 0.0;
+    double pressDurationMs = intervalMs * _clickDutyCycle.load();
     double releaseDurationMs = intervalMs - pressDurationMs;
 
     // 1. Нажатие (DOWN)
