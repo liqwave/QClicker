@@ -171,6 +171,7 @@ void MainWindow::on_pushButtonResetSettings_clicked() {
     _clicker->setBind(InputBinding());
     _clicker->setMouseButton(Qt::LeftButton);
     _clicker->setClicksPerSecond(0);
+    _clicker->setClickDutyCycle(0.0);
 }
 
 void MainWindow::on_pushButtonExit_clicked() { qApp->quit(); }

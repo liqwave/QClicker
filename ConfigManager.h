@@ -33,7 +33,7 @@ public:
     InputBinding getBind() const { return _bind; }
     Qt::MouseButton getMouseButton() const { return _mouseButton; }
     unsigned getClicksPerSecond() const { return _clicksPerSecond; }
-    double getClickDutyCycle() const { return _clickDutyCycle; };
+    double getClickDutyCycle() const { return _clickDutyCycle; }
     bool getAutoRun() const { return _autoRun; }
     bool getRunInTray() const { return _runInTray; }
 };
