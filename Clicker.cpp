@@ -103,7 +103,8 @@ void Clicker::_performSingleClick() {
 
     double intervalMs = 1000.0 / cps;
 
-    double pressDurationMs = intervalMs * 0.5;
+    // click duty cycle
+    double pressDurationMs = intervalMs * 0.0;
     double releaseDurationMs = intervalMs - pressDurationMs;
 
     // 1. Нажатие (DOWN)
