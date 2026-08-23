@@ -46,6 +46,7 @@ private slots:
     void on_spinBoxClicksPerSecond_editingFinished();
     void on_doubleSpinBoxClickDutyCycle_valueChanged(double arg1);
     void on_doubleSpinBoxClickDutyCycle_editingFinished();
+    void on_comboBoxTheme_currentIndexChanged(int index);
     void on_pushButtonResetSettings_clicked();
     void on_pushButtonExit_clicked();
     void on_pushButtonOk_clicked();

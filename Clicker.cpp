@@ -37,6 +37,7 @@ void Clicker::loadConfig(const ConfigManager& config) {
     setMouseButton(config.getMouseButton());
     setClicksPerSecond(config.getClicksPerSecond());
     setClickDutyCycle(config.getClickDutyCycle());
+    setTheme(config.getTheme());
     setAutoRun(config.getAutoRun());
     setRunInTray(config.getRunInTray());
 }

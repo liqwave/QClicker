@@ -9,8 +9,8 @@ class StyleManager {
 public:
     StyleManager() = default;
 
-    static void setStyleState(QLabel* label, ClickerState state);
-    static void setStyleWarning(QLabel* label, Warning warning);
+    static void setStyleState(QLabel* label, ClickerState state, bool isDark);
+    static void setStyleWarning(QLabel* label, Warning warning, bool isDark);
 };
 
 #endif // STYLEMANAGER_H

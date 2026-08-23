@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>600</width>
-    <height>509</height>
+    <height>474</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -19,13 +19,13 @@
   <property name="minimumSize">
    <size>
     <width>600</width>
-    <height>443</height>
+    <height>474</height>
    </size>
   </property>
   <property name="maximumSize">
    <size>
     <width>600</width>
-    <height>600</height>
+    <height>474</height>
    </size>
   </property>
   <property name="font">
@@ -460,11 +460,11 @@
               </widget>
              </item>
              <item>
-              <widget class="QPushButton" name="pushButtonTheme">
+              <widget class="QComboBox" name="comboBoxTheme">
                <property name="sizePolicy">
                 <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
                  <horstretch>0</horstretch>
-                 <verstretch>0</verstretch>
+                 <verstretch>30</verstretch>
                 </sizepolicy>
                </property>
                <property name="minimumSize">
@@ -475,13 +475,25 @@
                </property>
                <property name="maximumSize">
                 <size>
-                 <width>12312132</width>
-                 <height>16777215</height>
+                 <width>128</width>
+                 <height>84</height>
                 </size>
                </property>
-               <property name="text">
-                <string>Dark</string>
-               </property>
+               <item>
+                <property name="text">
+                 <string>System</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Light</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Dark</string>
+                </property>
+               </item>
               </widget>
              </item>
             </layout>
@@ -491,7 +503,7 @@
          <item row="1" column="0">
           <layout class="QHBoxLayout" name="horizontalLayout_9">
            <item>
-            <layout class="QVBoxLayout" name="verticalLayout_7">
+            <layout class="QVBoxLayout" name="verticalLayout_6">
              <item>
               <widget class="QLabel" name="labelQClicker">
                <property name="font">
@@ -524,7 +536,7 @@
                 </font>
                </property>
                <property name="text">
-                <string> v1.0.0</string>
+                <string>v1.0.0</string>
                </property>
               </widget>
              </item>
@@ -532,6 +544,12 @@
            </item>
            <item>
             <widget class="QLabel" name="labelSigmaGif">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
              <property name="minimumSize">
               <size>
                <width>128</width>
@@ -565,7 +583,7 @@
     <item row="1" column="0">
      <widget class="QGroupBox" name="groupBoxOther">
       <property name="sizePolicy">
-       <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+       <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
         <horstretch>0</horstretch>
         <verstretch>0</verstretch>
        </sizepolicy>

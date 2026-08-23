@@ -22,6 +22,7 @@ public:
     using ActivationMode = ::ActivationMode;
     using ClickerState   = ::ClickerState;
     using Warning        = ::Warning;
+    using Theme          = ::Theme;
 
 private:
     GlobalHook _hook;
@@ -41,6 +42,7 @@ private:
 
     std::atomic<ClickerState> _state = ClickerState::BindingKey;
     std::atomic<Warning> _warning = Warning::ZeroCps;
+    std::atomic<Theme> _theme = Theme::System;
 
     bool _autoRun = false;
     bool _runInTray = false;
@@ -70,6 +72,7 @@ public:
     double getClickDutyCycle() const { return _clickDutyCycle.load(); }
     ClickerState getState() const { return _state; }
     Warning getWarning() const { return _warning; }
+    Theme getTheme() const { return _theme; }
     bool getAutoRun() const { return _autoRun; }
     bool getRunInTray() const { return _runInTray; }
 
@@ -85,6 +88,7 @@ public:
     void setClickDutyCycle(double value) { _clickDutyCycle = value; emit clickDutyCycleChanged(value); }
     void setState(ClickerState state) { _state = state; emit stateChanged(state); }
     void setWarning(Warning warning) { _warning = warning; emit warningChanged(warning); }
+    void setTheme(Theme theme) { _theme = theme; emit themeChanged(theme); }
     void setAutoRun(bool value) { _autoRun = value; emit autoRunChanged(value); }
     void setRunInTray(bool value) { _runInTray = value; emit runInTrayChanged(value); }
 
@@ -96,6 +100,7 @@ signals:
     void clickDutyCycleChanged(double value);
     void stateChanged(ClickerState state);
     void warningChanged(Warning warning);
+    void themeChanged(Theme theme);
     void autoRunChanged(bool value);
     void runInTrayChanged(bool value);
 };

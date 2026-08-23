@@ -60,6 +60,7 @@ ConfigManager::ConfigManager() {
             _mouseButton = static_cast<Qt::MouseButton>(jsonObj["MouseButton"].toInt());
             _clicksPerSecond = jsonObj["ClicksPerSecond"].toInt();
             _clickDutyCycle = jsonObj["ClickDutyCycle"].toDouble();
+            _theme = static_cast<Clicker::Theme>(jsonObj["Theme"].toInt());
             _autoRun = jsonObj["AutostartWithWindows"].toBool();
             _runInTray = jsonObj["RunInSystemTray"].toBool();
         }
@@ -74,6 +75,7 @@ void ConfigManager::write(const Clicker &clicker) {
     jsonObj["MouseButton"] = static_cast<int>(clicker.getMouseButton());
     jsonObj["ClicksPerSecond"] = static_cast<int>(clicker.getClicksPerSecond());
     jsonObj["ClickDutyCycle"] = static_cast<double>(clicker.getClickDutyCycle());
+    jsonObj["Theme"] = static_cast<int>(clicker.getTheme());
     jsonObj["AutostartWithWindows"] = clicker.getAutoRun();
     jsonObj["RunInSystemTray"] = clicker.getRunInTray();
 

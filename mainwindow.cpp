@@ -10,15 +10,18 @@
 #include <QMessageBox>
 #include <QSettings>
 #include <QTimer>
+#include <QGuiApplication>
+#include <QStyleHints>
 
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWindow) {
     ui->setupUi(this);
     this->setWindowIcon(QIcon(":/sources/iconDefault.ico"));
 
+    bool isDark = QGuiApplication::styleHints()->colorScheme() == Qt::ColorScheme::Dark;
     ui->labelClickerStateValue->setAlignment(Qt::AlignCenter);
     ui->labelWarningValue->setAlignment(Qt::AlignCenter);
-    StyleManager::setStyleState(ui->labelClickerStateValue, Clicker::ClickerState::BindingKey);
-    StyleManager::setStyleWarning(ui->labelWarningValue, Clicker::Warning::ZeroCps);
+    StyleManager::setStyleState(ui->labelClickerStateValue, Clicker::ClickerState::BindingKey, isDark);
+    StyleManager::setStyleWarning(ui->labelWarningValue, Clicker::Warning::ZeroCps, isDark);
 
     _movie = new QMovie(":/sources/sigma.gif", QByteArray(), this);
     ui->labelSigmaGif->setMovie(_movie);
@@ -63,7 +66,8 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     });
 
     connect(_clicker, &Clicker::stateChanged, this, [this](Clicker::ClickerState state) {
-        StyleManager::setStyleState(ui->labelClickerStateValue, state);
+        bool isDark = QGuiApplication::styleHints()->colorScheme() == Qt::ColorScheme::Dark;
+        StyleManager::setStyleState(ui->labelClickerStateValue, state, isDark);
         switch(state) {
         case Clicker::ClickerState::BindingKey: _setAppIcon(QIcon(":/sources/iconDefault.ico")); break;
         case Clicker::ClickerState::Ready: _setAppIcon(QIcon(":/sources/iconDefault.ico")); break;
@@ -72,7 +76,23 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     });
 
     connect(_clicker, &Clicker::warningChanged, this, [this](Clicker::Warning warning) {
-        StyleManager::setStyleWarning(ui->labelWarningValue, warning);
+        bool isDark = QGuiApplication::styleHints()->colorScheme() == Qt::ColorScheme::Dark;
+        StyleManager::setStyleWarning(ui->labelWarningValue, warning, isDark);
+    });
+
+    connect(_clicker, &Clicker::themeChanged, this, [this](Clicker::Theme theme) {
+        switch(theme) {
+        case Theme::System: QGuiApplication::styleHints()->setColorScheme(Qt::ColorScheme::Unknown); break;
+        case Theme::Light: QGuiApplication::styleHints()->setColorScheme(Qt::ColorScheme::Light); break;
+        case Theme::Dark: QGuiApplication::styleHints()->setColorScheme(Qt::ColorScheme::Dark); break;
+        }
+
+        bool isDark = QGuiApplication::styleHints()->colorScheme() == Qt::ColorScheme::Dark;
+        StyleManager::setStyleState(ui->labelClickerStateValue, _clicker->getState(), isDark);
+        StyleManager::setStyleWarning(ui->labelWarningValue, _clicker->getWarning(), isDark);
+
+        ui->comboBoxTheme->setCurrentIndex(static_cast<int>(theme));
+        if (_isConfigLoaded) _configManager.write(*_clicker);
     });
 
     connect(_clicker, &Clicker::autoRunChanged, this, [this](bool arg1) {
@@ -149,6 +169,7 @@ void MainWindow::on_comboBoxMouseButton_currentIndexChanged(int index) {
     _clicker->setMouseButton(mouseButton);
 }
 
+void MainWindow::on_spinBoxClicksPerSecond_editingFinished() { ui->spinBoxClicksPerSecond->clearFocus(); }
 void MainWindow::on_spinBoxClicksPerSecond_valueChanged(int arg1) {
     _clicker->setClicksPerSecond(arg1);
 
@@ -158,13 +179,14 @@ void MainWindow::on_spinBoxClicksPerSecond_valueChanged(int arg1) {
         _clicker->setWarning(Clicker::Warning::ZeroCps);
 }
 
-void MainWindow::on_spinBoxClicksPerSecond_editingFinished() { ui->spinBoxClicksPerSecond->clearFocus(); }
-
+void MainWindow::on_doubleSpinBoxClickDutyCycle_editingFinished() { ui->doubleSpinBoxClickDutyCycle->clearFocus(); }
 void MainWindow::on_doubleSpinBoxClickDutyCycle_valueChanged(double arg1) {
     _clicker->setClickDutyCycle(arg1);
 }
 
-void MainWindow::on_doubleSpinBoxClickDutyCycle_editingFinished() { ui->doubleSpinBoxClickDutyCycle->clearFocus(); }
+void MainWindow::on_comboBoxTheme_currentIndexChanged(int index) {
+    _clicker->setTheme(static_cast<Clicker::Theme>(index));
+}
 
 void MainWindow::on_pushButtonResetSettings_clicked() {
     _clicker->setMode(Clicker::ActivationMode::Hold);
