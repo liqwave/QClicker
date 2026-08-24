@@ -230,7 +230,7 @@
            </font>
           </property>
           <property name="title">
-           <string>Click Rate</string>
+           <string>Click rate</string>
           </property>
           <layout class="QGridLayout" name="gridLayout_4">
            <item row="0" column="0">
@@ -342,7 +342,7 @@
          </font>
         </property>
         <property name="title">
-         <string>Info</string>
+         <string>Info &amp;&amp; theme</string>
         </property>
         <layout class="QGridLayout" name="gridLayout_3">
          <item row="0" column="0">
