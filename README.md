@@ -2,8 +2,7 @@
 
 Простой автокликер для Windows, написанный на C++ и Qt.
 
-<img width="600" height="503" alt="изображение" src="https://github.com/user-attachments/assets/021ef9d1-7532-44d0-a69e-9667310188c0" />
-
+<img width="599" height="503" alt="изображение" src="https://github.com/user-attachments/assets/df1a55da-ebe8-400d-b9ac-b66b9b5a3184" />
 
 ## Возможности
 
