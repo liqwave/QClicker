@@ -536,7 +536,7 @@
                 </font>
                </property>
                <property name="text">
-                <string>v1.0.0</string>
+                <string>v1.1.0</string>
                </property>
               </widget>
              </item>
@@ -615,6 +615,13 @@
            </property>
            <property name="text">
             <string>Run in system tray</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QCheckBox" name="checkBoxStartMinimizedToTray">
+           <property name="text">
+            <string>Start minimized to tray</string>
            </property>
           </widget>
          </item>

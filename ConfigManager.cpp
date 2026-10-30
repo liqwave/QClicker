@@ -63,6 +63,7 @@ ConfigManager::ConfigManager() {
             _theme = static_cast<Clicker::Theme>(jsonObj["Theme"].toInt());
             _autoRun = jsonObj["AutostartWithWindows"].toBool();
             _runInTray = jsonObj["RunInSystemTray"].toBool();
+            _startInTray = jsonObj["StartInSystemTray"].toBool();
         }
     }
 }
@@ -78,6 +79,7 @@ void ConfigManager::write(const Clicker &clicker) {
     jsonObj["Theme"] = static_cast<int>(clicker.getTheme());
     jsonObj["AutostartWithWindows"] = clicker.getAutoRun();
     jsonObj["RunInSystemTray"] = clicker.getRunInTray();
+    jsonObj["StartInSystemTray"] = clicker.getStartInTray();
 
     QJsonDocument document(jsonObj);
 

@@ -21,6 +21,7 @@ private:
 
     bool _autoRun = false;
     bool _runInTray = false;
+    bool _startInTray = false;
 
     QJsonObject _bindToJson(const InputBinding& binding);
     InputBinding _jsonToBind(const QJsonObject& jsonObj);
@@ -38,6 +39,7 @@ public:
     Theme getTheme() const { return _theme; }
     bool getAutoRun() const { return _autoRun; }
     bool getRunInTray() const { return _runInTray; }
+    bool getStartInTray() const { return _startInTray; }
 };
 
 #endif // CONFIGMANAGER_H

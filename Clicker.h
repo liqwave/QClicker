@@ -46,6 +46,7 @@ private:
 
     bool _autoRun = false;
     bool _runInTray = false;
+    bool _startInTray = false;
 
     void _workerLoop();
     void _performSingleClick();
@@ -75,6 +76,7 @@ public:
     Theme getTheme() const { return _theme; }
     bool getAutoRun() const { return _autoRun; }
     bool getRunInTray() const { return _runInTray; }
+    bool getStartInTray() const { return _startInTray; }
 
     void setMode(ActivationMode mode) { _mode = mode; emit modeChanged(mode); }
     void setBind(InputBinding bind) {
@@ -91,6 +93,7 @@ public:
     void setTheme(Theme theme) { _theme = theme; emit themeChanged(theme); }
     void setAutoRun(bool value) { _autoRun = value; emit autoRunChanged(value); }
     void setRunInTray(bool value) { _runInTray = value; emit runInTrayChanged(value); }
+    void setStartInTray(bool value) { _startInTray = value; emit startInTrayChanged(value); }
 
 signals:
     void modeChanged(ActivationMode mode);
@@ -103,6 +106,7 @@ signals:
     void themeChanged(Theme theme);
     void autoRunChanged(bool value);
     void runInTrayChanged(bool value);
+    void startInTrayChanged(bool value);
 };
 
 #endif // CLICKER_H

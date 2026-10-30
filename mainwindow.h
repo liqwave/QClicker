@@ -38,6 +38,8 @@ public:
     explicit MainWindow(QWidget* parent = nullptr);
     ~MainWindow() override;
 
+    void run();
+
 private slots:
     void on_comboBoxActivationMode_currentIndexChanged(int index);
     void on_pushButtonActivationKey_clicked();
@@ -52,6 +54,7 @@ private slots:
     void on_pushButtonOk_clicked();
     void on_checkBoxAutostartWithWindows_checkStateChanged(const Qt::CheckState& arg1);
     void on_checkBoxRunInSystemTray_checkStateChanged(const Qt::CheckState& arg1);
+    void on_checkBoxStartMinimizedToTray_checkStateChanged(const Qt::CheckState &arg1);
 
 signals:
     void iconChanged(const QIcon& icon);

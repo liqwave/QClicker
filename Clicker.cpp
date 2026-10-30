@@ -40,6 +40,7 @@ void Clicker::loadConfig(const ConfigManager& config) {
     setTheme(config.getTheme());
     setAutoRun(config.getAutoRun());
     setRunInTray(config.getRunInTray());
+    setStartInTray(config.getStartInTray());
 }
 
 void Clicker::startHook() {

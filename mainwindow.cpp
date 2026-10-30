@@ -102,6 +102,17 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
 
     connect(_clicker, &Clicker::runInTrayChanged, this, [this](bool arg1) {
         ui->checkBoxRunInSystemTray->setCheckState(arg1 ? Qt::CheckState::Checked : Qt::CheckState::Unchecked);
+
+        // При включении работы в трее так же включаем возможность включать приложение в свернутом режиме,
+        // Аналогично при выключении трея выключаем опцию запуска в свернутом режиме, а так же делаем ее некликабельной
+        ui->checkBoxStartMinimizedToTray->setEnabled(arg1);
+        if (arg1 == false && _clicker->getStartInTray() == true) _clicker->setStartInTray(false);
+
+        if (_isConfigLoaded) _configManager.write(*_clicker);
+    });
+
+    connect(_clicker, &Clicker::startInTrayChanged, this, [this](bool arg1) {
+        ui->checkBoxStartMinimizedToTray->setCheckState(arg1 ? Qt::CheckState::Checked : Qt::CheckState::Unchecked);
         if (_isConfigLoaded) _configManager.write(*_clicker);
     });
 
@@ -110,6 +121,11 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
 }
 
 MainWindow::~MainWindow() { delete ui; }
+
+void MainWindow::run() {
+    if (_clicker->getRunInTray() == true && _clicker->getStartInTray() == true ) { /* Запускаем в свернутом режиме */ }
+    else this->show();
+}
 
 void MainWindow::closeEvent(QCloseEvent *event) {
     if (QApplication::activeModalWidget()) {
@@ -228,6 +244,15 @@ void MainWindow::on_checkBoxRunInSystemTray_checkStateChanged(const Qt::CheckSta
             delete _trayManager;
             _trayManager = nullptr;
         }
+    }
+}
+
+void MainWindow::on_checkBoxStartMinimizedToTray_checkStateChanged(const Qt::CheckState &arg1) {
+    if (arg1 == Qt::CheckState::Checked) {
+        _clicker->setStartInTray(true);
+    }
+    else {
+        _clicker->setStartInTray(false);
     }
 }
 
