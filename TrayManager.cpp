@@ -17,6 +17,14 @@ TrayManager::TrayManager(QMainWindow *window, QObject *parent)
     connect(restoreAction, &QAction::triggered, _mainWindow, &QWidget::showNormal);
     connect(quitAction, &QAction::triggered, qApp, &QCoreApplication::quit);
 
+    // Форсируем раннюю инициализацию нативного попап-окна меню,
+    // чтобы первый реальный показ (правый клик по трею) не тормозил
+    // UI-поток в момент, когда хук должен быть отзывчив
+    _trayMenu->setAttribute(Qt::WA_DontShowOnScreen, true);
+    _trayMenu->show();
+    _trayMenu->hide();
+    _trayMenu->setAttribute(Qt::WA_DontShowOnScreen, false);
+
     _trayIcon->setContextMenu(_trayMenu);
     _trayIcon->show();
 
