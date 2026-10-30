@@ -7,7 +7,7 @@
 #include <QStyleFactory>
 
 int main(int argc, char *argv[]) {
-    SetCurrentProcessExplicitAppUserModelID(L"YourName.QClicker.1");
+    SetCurrentProcessExplicitAppUserModelID(L"liqwave.QClicker");
     QApplication a(argc, argv);
 
     a.setStyle(QStyleFactory::create("Fusion"));
