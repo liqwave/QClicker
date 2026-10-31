@@ -123,8 +123,14 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
 MainWindow::~MainWindow() { delete ui; }
 
 void MainWindow::run() {
-    if (_clicker->getRunInTray() == true && _clicker->getStartInTray() == true ) { /* Запускаем в свернутом режиме */ }
-    else this->show();
+    // форсируем ранюю инициализацию окна, чтобы при первом show() по клику в трее у нас не лагал UI
+    setAttribute(Qt::WA_DontShowOnScreen, true);
+    show();
+    hide();
+    setAttribute(Qt::WA_DontShowOnScreen, false);
+
+    if (!(_clicker->getRunInTray() && _clicker->getStartInTray()))
+        show();
 }
 
 void MainWindow::closeEvent(QCloseEvent *event) {
